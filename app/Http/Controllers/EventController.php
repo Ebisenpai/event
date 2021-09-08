@@ -11,5 +11,9 @@ class EventController extends Controller
     {
         return view('index')->with(['events' => $event->get()]);
     }
+    public function show(Event $event)
+    {
+        return view('show')->with(['event' =>$event]);
+    }
 }
 ?>
