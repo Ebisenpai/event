@@ -9,6 +9,7 @@
     </head>
     <body>
         <h1>Event Name</h1>
+        <p class='create'>[<a href='/events/create'>create</a>]</p>
         <div class='events'>
             @foreach ($events as $event)
                 <div class='event'>

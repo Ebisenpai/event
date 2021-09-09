@@ -15,5 +15,16 @@ class EventController extends Controller
     {
         return view('show')->with(['event' =>$event]);
     }
+    public function create()
+    {
+        return view('create');
+    }
+    public function store(Request $request, Event $event)
+    {
+        $input = $request['events'];
+        $input['user_id']=auth()->user()->id;
+        $event->fill($input)->save();
+        return redirect('/events/' . $event->id);
+    }
 }
 ?>
