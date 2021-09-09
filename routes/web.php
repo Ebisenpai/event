@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 Route::get('/events', 'EventController@index');
+Route::get('/events/create', 'EventController@create');
 Route::get('/events/{event}', 'EventController@show');
+Route::post('/events', 'EventController@store');
+
 
 
