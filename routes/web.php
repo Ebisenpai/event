@@ -15,6 +15,6 @@ Route::get('/events', 'EventController@index');
 Route::get('/events/create', 'EventController@create');
 Route::get('/events/{event}', 'EventController@show');
 Route::post('/events', 'EventController@store');
-
+Route::post('/admin', 'AdministratorController@store');
 
 
