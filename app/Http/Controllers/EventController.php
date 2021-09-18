@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function index(Event $event)
+     public function index(Event $event)
     {
         return view('index')->with(['events' => $event->get()]);
     }
     public function show(Event $event,User $user)
     {
+        return view('show')->with(['event' =>$event]);
         return view('show')->with(['events' =>$event,'users' =>$user->get()]);
     }
     public function create()
