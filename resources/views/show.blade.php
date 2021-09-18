@@ -10,18 +10,30 @@
     </head>
     <body>
         <h1 class="title">
-            {{ $event->title }}
+            {{ $events->title }}
         </h1>
         <div class="outline">
             <div class="outline__post">
-                <p>{{ $event->outline }}</p>    
+                <p>{{ $events->outline }}</p>    
             </div>
         </div>
         <div class="content">
             <div class="content__post">
-                <p>{{ $event->body }}</p>    
+                <p>{{ $events->body }}</p>    
             </div>
         </div>
+        <form action="/admin" method="post">
+            {{ csrf_field() }}
+            <div class ="user_id">
+                <select name="administrators[user_id]">
+                    @foreach ($users as $user)
+                    <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            @dd($events)//こちらで指定した値を送りたい
+            <input type="submit" value="保存"/>
+        </form>
         <div class="footer">
             <a href="/">戻る</a>
         </div>
