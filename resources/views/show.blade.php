@@ -22,6 +22,7 @@
                 <p>{{ $events->body }}</p>    
             </div>
         </div>
+        @if($events->adminCheck())
         <form action="/admin" method="post">
             {{ csrf_field() }}
             <div class ="selection">
@@ -34,6 +35,7 @@
             <input type="hidden" name='administrators[event_id]' value={{$events->id}}>
             <input type="submit" value="保存"/>
         </form>
+        @endif
         <form action="/invite" method="post">
             {{ csrf_field() }}
             <div class ="selection">
