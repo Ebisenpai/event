@@ -31,7 +31,7 @@
                     @endforeach
                 </select>
             </div>
-            <input type="hidden" name='event_id' value={{$events->id}}>
+            <input type="hidden" name='administrators[event_id]' value={{$events->id}}>
             <input type="submit" value="保存"/>
         </form>
         <div class="footer">

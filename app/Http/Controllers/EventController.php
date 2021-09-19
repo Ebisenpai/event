@@ -20,7 +20,7 @@ class EventController extends Controller
     {
         return view('create');
     }
-    public function store(Request $request, Event $event)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
+    public function store(Request $request, Event $event, User $user)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
         $input = $request['events'];//変数nputにリクエストインスタンスのevens配列を代入
         $input['user_id']=auth()->user()->id;//配列の追加を行っている。auth()はヘルパを参照
