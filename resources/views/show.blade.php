@@ -24,14 +24,14 @@
         </div>
         <form action="/admin" method="post">
             {{ csrf_field() }}
-            <div class ="user_id">
+            <div class ="selection">
                 <select name="administrators[user_id]">
                     @foreach ($users as $user)
                     <option value="{{$user->id}}">{{$user->name}}</option>
                     @endforeach
                 </select>
             </div>
-            @dd($events)//こちらで指定した値を送りたい
+            <input type="hidden" name='event_id' value={{$events->id}}>
             <input type="submit" value="保存"/>
         </form>
         <div class="footer">
