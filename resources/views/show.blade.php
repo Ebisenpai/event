@@ -34,6 +34,18 @@
             <input type="hidden" name='administrators[event_id]' value={{$events->id}}>
             <input type="submit" value="保存"/>
         </form>
+        <form action="/invite" method="post">
+            {{ csrf_field() }}
+            <div class ="selection">
+                <select name="eventinvitations[invited_user]">
+                    @foreach ($users as $user)
+                    <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <input type="hidden" name='eventinvitations[event_id]' value={{$events->id}}>
+            <input type="submit" value="保存"/>
+        </form>
         <div class="footer">
             <a href="/">戻る</a>
         </div>
