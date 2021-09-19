@@ -13,4 +13,14 @@ class Event extends Model
     'body',
     'user_id'
     ];
+    
+    public function admins()
+    {
+        return $this->belongsToMany('App\User','administrators','event_id','user_id');
+    }
+    
+    public function adminCheck()
+    {
+        return $this->admins->contains(auth()->user());
+    }
 }
