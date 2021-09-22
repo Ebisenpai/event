@@ -13,9 +13,11 @@
 Auth::routes();
 Route::get('/events', 'EventController@index');
 Route::get('/events/create', 'EventController@create');
+Route::post('/events/approve', 'EventController@approve');
 Route::get('/events/{event}', 'EventController@show');
 Route::post('/events', 'EventController@store');
 Route::post('/admin', 'AdministratorController@store');
 Route::post('/invite', 'EventInvitationController@store');
+
 
 
