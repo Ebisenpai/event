@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-     public function index(Event $event)
+     public function index(Event $event,User $user)
     {
-        return view('index')->with(['events' => $event->get()]);
+        return view('index')->with(['events' => $event->get(),'users' =>$user->get()]);
     }
     public function show(Event $event,User $user)
     {
@@ -26,6 +26,11 @@ class EventController extends Controller
         $input['user_id']=auth()->user()->id;//配列の追加を行っている。auth()はヘルパを参照
         $event->fill($input)->save();//イベントモデルに変数inputの値を入れる
         return redirect('/events/' . $event->id);
+    }
+    public function approve(Event $event)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
+    {
+        dd($event->get());
+        return redirect('/events/');
     }
 }
 ?>

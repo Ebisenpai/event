@@ -12,6 +12,13 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new \App\User([
+            'name' =>'阿部颯紀',
+            'email' =>'satsukiabe0328@gmail.com',
+            'password'=>Hash::make('abesatsu328')
+        ]);
+        $user->save();
+        
+        $user = new \App\User([
             'name' =>'あべさつき',
             'email' =>'satuki328glk@yahoo.co.jp',
             'password'=>Hash::make('abesatsu328')
@@ -21,28 +28,28 @@ class UserTableSeeder extends Seeder
         $user = new \App\User([
             'name' =>'アベサツキ',
             'email' =>'s-abe-2e6@eagle.sophia.ac.jp',
-            'password'=>'abesatsu328'
+            'password'=>Hash::make('abesatsu328')
         ]);
         $user->save();
         
         $user = new \App\User([
             'name' =>'山田太郎',
             'email' =>'satsukiabe03281999@outlook.jp',
-            'password'=>'abesatsu328'
+            'password'=>Hash::make('abesatsu328')
         ]);
         $user->save();
         
         $user = new \App\User([
             'name' =>'山田花子',
             'email' =>'yamada@yahoo.co.jp',
-            'password'=>'abesatsu328'
+            'password'=>Hash::make('abesatsu328')
         ]);
         $user->save();
         
         $user = new \App\User([
             'name' =>'安倍太郎',
             'email' =>'abe@yahoo.co.jp',
-            'password'=>'abesatsu328'
+            'password'=>Hash::make('abesatsu328')
         ]);
         $user->save();
     }
