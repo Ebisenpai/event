@@ -56,4 +56,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Event','event_invitations','invited_user','event_id')->wherePivot('invitation_status', 0);
     }
     
+    public function approve_invitation()
+    {
+        $user = user::find(id);
+        
+        $event_invitations =
+    }
 }
