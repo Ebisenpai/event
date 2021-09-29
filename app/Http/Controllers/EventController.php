@@ -22,15 +22,23 @@ class EventController extends Controller
     }
     public function store(Request $request, Event $event, User $user)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
+        dd($request);
         $input = $request['events'];//変数nputにリクエストインスタンスのevens配列を代入
         $input['user_id']=auth()->user()->id;//配列の追加を行っている。auth()はヘルパを参照
         $event->fill($input)->save();//イベントモデルに変数inputの値を入れる
         return redirect('/events/' . $event->id);
     }
-    public function approve(Event $event)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
+    public function approve(Request $request, Event $event, EventInvitation $eventinvitation)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
-        dd($event->get());
+        dd(auth()->user()->id);
+        dd($request['inviting']);
+        
+        $eventinvitation['invitation_status']->fill(1)->save();
         return redirect('/events/');
+    }
+    public function chat(Chat $chat)
+    {
+        return view('chat')->with(['chats' =>$chat->get()]);;
     }
 }
 ?>

@@ -24,8 +24,9 @@
                 </div>
             </div>
             @if($events->creatorCheck())
-            <form action="/admin" method="post">
+            <form action="/admin/" method="post">
                 {{ csrf_field() }}
+                管理者の追加
                 <div class ="selection">
                     <select name="administrators[user_id]">
                         @foreach ($users as $user)
@@ -40,6 +41,7 @@
             @if($events->adminCheck())
             <form action="/invite" method="post">
                 {{ csrf_field() }}
+                イベント招待
                 <div class ="selection">
                     <select name="eventinvitations[invited_user]">
                         @foreach ($users as $user)
