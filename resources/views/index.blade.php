@@ -42,7 +42,11 @@
                         <div class='event'>
                             <h2 class='title'>{{ $event->title }}</h2>
                             <p class='outline'>{{ $event->outline}}</p>
-                            <a class="btn btn-primary" href='/events/approve'>承諾</a>
+                            <form action="/events/approve" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name='inviting[event_id]' value={{$event->id}}>
+                                <input type="submit" value="承諾"/>
+                            </form>
                         </div>
                     @endforeach
                 </div>
@@ -57,7 +61,6 @@
                             </div>
                         @endforeach
                     </div>
-                
             </dev>
         </div>
     </body>
