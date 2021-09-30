@@ -59,7 +59,13 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                a
+                @foreach ($chat_rooms as $chatroom){{--user1かuse2に自分が入っている場合のみ--}}
+                    @dd($chatroom->chats()->get())
+                    <div class='chatroom'>
+                        <h2 class='message'>{{ $chatroom->id }}</h2>{{--新着メッセージのみ--}}
+                    </div>
+                @endforeach
+                
             </div>
             <div class="col-sm-6">
                 b

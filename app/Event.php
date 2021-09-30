@@ -12,7 +12,8 @@ class Event extends Model
     'title',
     'outline',
     'body',
-    'user_id'
+    'user_id',
+    'invitation_status'
     ];
     
     public function admins()
@@ -30,4 +31,24 @@ class Event extends Model
         $user_id = Auth::id();
         return $this->user_id == $user_id;
     }
+    
+    public function invited_users()
+    {
+        return $this->belongsToMany('App\User','event_invitations','event_id','invited_user');
+    }
+    
+    
+    public function chat_rooms()
+    {
+        return $this->hasMany('App\ChatRoom','event_id');
+    }
+    
+    public function user_chat_rooms()
+    {
+        $chat_rooms->where('user1_id', auth()->user()->id)
+                       ->orWhere('user2_id', auth()->user()->id)
+                       ->get();
+        return $user_chat_room;
+    }
+    
 }
