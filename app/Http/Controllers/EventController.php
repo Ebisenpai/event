@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\User;
+use App\EventInvitation;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -14,7 +15,16 @@ class EventController extends Controller
     }
     public function show(Event $event,User $user)
     {
-        return view('show')->with(['events' =>$event,'users' =>$user->get()]);
+         $chat_rooms = $event->chat_rooms();
+         
+         $chat_rooms = $chat_rooms->where(function($query){
+                    $query->where('user1_id', auth()->user()->id)
+                            ->orWhere('user2_id', auth()->user()->id);
+                })->get();
+        return view('show')->with([
+            'chat_rooms' => $chat_rooms,
+            'events' =>$event,
+            'users' =>$user->get()]);
     }
     public function create()
     {
@@ -30,10 +40,10 @@ class EventController extends Controller
     }
     public function approve(Request $request, Event $event, EventInvitation $eventinvitation)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
-        dd(auth()->user()->id);
-        dd($request['inviting']);
-        
-        $eventinvitation['invitation_status']->fill(1)->save();
+        $matchThese = ['event_id' => $request['inviting'], 'invited_user' => auth()->user()->id];
+        $eventinvitation = EventInvitation::where($matchThese)->first();
+        $eventinvitation->invitation_status = 1;
+        $eventinvitation->save();
         return redirect('/events/');
     }
     public function chat(Chat $chat)
