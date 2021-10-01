@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\User;
+use App\Chat;
+use App\ChatRoom;
 use App\EventInvitation;
 use Illuminate\Http\Request;
 
@@ -16,11 +18,10 @@ class EventController extends Controller
     public function show(Event $event,User $user)
     {
          $chat_rooms = $event->chat_rooms();
-         
          $chat_rooms = $chat_rooms->where(function($query){
                     $query->where('user1_id', auth()->user()->id)
                             ->orWhere('user2_id', auth()->user()->id);
-                })->get();
+                            })->get();
         return view('show')->with([
             'chat_rooms' => $chat_rooms,
             'events' =>$event,
@@ -45,10 +46,6 @@ class EventController extends Controller
         $eventinvitation->invitation_status = 1;
         $eventinvitation->save();
         return redirect('/events/');
-    }
-    public function chat(Chat $chat)
-    {
-        return view('chat')->with(['chats' =>$chat->get()]);;
     }
 }
 ?>

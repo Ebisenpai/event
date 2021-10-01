@@ -51,4 +51,5 @@ class Event extends Model
         return $user_chat_room;
     }
     
+    
 }
