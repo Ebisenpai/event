@@ -11,11 +11,10 @@
     <body>
         <h1>Chat</h1>
         <div class='chat'>
-            @foreach ($chats as $chat){{--eventsは複数データが入っていて$eventが単一のデータ--}}
-                <div class='chat'>
-                    <h2 class='message'>{{ $chat->message }}</h2>
-                </div>
-            @endforeach        
+            @dd($chatrooms)
+            @foreach ($chatroom->chats()->get() as $chat)
+                <h2 class='message'>{{ $chat->user_name()}} : {{$chat->message }}</h2>{{--新着メッセージのみ--}}
+            @endforeach
         </div>
     </body>
 </html>

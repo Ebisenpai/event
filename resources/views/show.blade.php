@@ -60,9 +60,10 @@
         <div class="row">
             <div class="col-sm-6">
                 @foreach ($chat_rooms as $chatroom){{--user1かuse2に自分が入っている場合のみ--}}
-                    @dd($chatroom->chats()->get())
                     <div class='chatroom'>
-                        <h2 class='message'>{{ $chatroom->id }}</h2>{{--新着メッセージのみ--}}
+                        @foreach ($chatroom->chats()->get() as $chat)
+                            <a href='/events/{{$events->id}}/{{$chatroom->id}}'><h2 class='message'>{{ $chat->user_name()}} : {{$chat->message }}</h2></a>{{--新着メッセージのみ--}}
+                        @endforeach
                     </div>
                 @endforeach
                 
