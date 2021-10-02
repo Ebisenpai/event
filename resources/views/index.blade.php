@@ -10,7 +10,11 @@
     </head>
     <body>
         <div class="row">
-            <div class="col-sm-6">
+            <form action="/logout" method="post">
+                {{ csrf_field() }}
+                <input type="submit" value="logout"/>
+            </form>
+        <div class="col-sm-6">
                 <h1>Event Name</h1>
                 <div class='events'>
                     @foreach ($events as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
