@@ -29,5 +29,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    
+    'line' => [
+        'key' => env('LINE_CRIENT_KEY'),
+        'secret' => env('LINE_CRIENT_SECRET'),
+        'redirect' => 'https://a4844ad9ecb74c109922e72b61ec18c1.vfs.cloud9.us-east-2.amazonaws.com/login/line/callback'
+    ],
 
 ];
