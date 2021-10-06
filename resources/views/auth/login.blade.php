@@ -63,6 +63,10 @@
                                     </a>
                                 @endif
                             </div>
+                            <div class="col-md-8 offset-md-4">
+                                <p></p>
+                                <a class="btn btn-primary" href='/login/line'>Line login</a>
+                            </div>
                         </div>
                     </form>
                 </div>

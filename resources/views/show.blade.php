@@ -61,15 +61,28 @@
             <div class="col-sm-6">
                 @foreach ($chat_rooms as $chatroom){{--user1かuse2に自分が入っている場合のみ--}}
                     <div class='chatroom'>
-                        @foreach ($chatroom->chats()->get() as $chat)
-                            <a href='/events/{{$events->id}}/{{$chatroom->id}}'><h2 class='message'>{{ $chat->user_name()}} : {{$chat->message }}</h2></a>{{--新着メッセージのみ--}}
-                        @endforeach
+                        <a href='/events/{{$events->id}}/{{$chatroom->id}}'>{{$chatroom->partner()}}:{{$chatroom->latest_chat()}}</a>
                     </div>
                 @endforeach
                 
-            </div>
+            </div>{{--新規メッセージ送信--}}
             <div class="col-sm-6">
-                b
+                <form action="/chats" method="post">
+                    {{ csrf_field() }}
+                    <div class="title">
+                        <h2>Title</h2>
+                        <input type="text" name="events[title]" placeholder="タイトル"/>
+                    </div>
+                    <div class="outline">
+                        <h2>outline</h2>
+                        <textarea name="events[outline]" placeholder="概要"/></textarea>
+                    </div>
+                    <div class="body">
+                        <h2>Body</h2>
+                        <textarea name="events[body]" placeholder="今日も1日お疲れさまでした。"></textarea>
+                    </div>
+                    <input type="submit" value="保存"/>
+                </form>
             </div>
         </div>
     </body>

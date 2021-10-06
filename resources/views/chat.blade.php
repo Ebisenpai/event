@@ -11,8 +11,7 @@
     <body>
         <h1>Chat</h1>
         <div class='chat'>
-            @dd($chatrooms)
-            @foreach ($chatroom->chats()->get() as $chat)
+            @foreach ($chatrooms->chats()->get() as $chat)
                 <h2 class='message'>{{ $chat->user_name()}} : {{$chat->message }}</h2>{{--新着メッセージのみ--}}
             @endforeach
         </div>
