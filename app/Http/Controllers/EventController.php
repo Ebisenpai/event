@@ -8,6 +8,7 @@ use App\Chat;
 use App\ChatRoom;
 use App\EventInvitation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -22,11 +23,45 @@ class EventController extends Controller
                     $query->where('user1_id', auth()->user()->id)
                             ->orWhere('user2_id', auth()->user()->id);
                             })->get();
+        //authがチャットしているユーザーの配列
+        $array = array();
+        foreach($chat_rooms as $chatroom){
+            if($chatroom->user1_id != Auth::id()){
+                $array[] = $chatroom->user1_id;
+            }else{
+                $array[] = $chatroom->user2_id;
+            }
+        }
+        $sent_user_id = $array;
+        //dd($sent_user_id);
+       
+        //招待ユーザーidの配列を作る
+        $invited_users=$event->invited_users()->get();
+        $array1 = array();
+        foreach($invited_users as $invited_user){
+            $array1[] = $invited_user->id;
+        }
+        $invited_user_id = $array1;
+        //dd($invited_user_id);
+        
+         //招待ユーザーからチャットしているユーザを取り除く
+        $unsent_user_id=$invited_user_id;
+                        
+        foreach($sent_user_id as $sentuser_id){                
+            $key = array_search($sentuser_id, $unsent_user_id);
+            if(!is_bool($key)){
+                unset($unsent_user_id[$key]);
+            }
+        }    
+        
         return view('show')->with([
+            'unsent_user_id' => $unsent_user_id,
+            'sent_user_id' => $sent_user_id,
             'chat_rooms' => $chat_rooms,
             'events' =>$event,
             'users' =>$user->get()]);
     }
+    
     public function create()
     {
         return view('create');

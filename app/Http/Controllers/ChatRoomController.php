@@ -16,4 +16,5 @@ class ChatRoomController extends Controller
             'chatrooms' =>$chatroom,
             ]);
     }
+    
 }

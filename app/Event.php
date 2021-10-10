@@ -43,13 +43,7 @@ class Event extends Model
         return $this->hasMany('App\ChatRoom','event_id');
     }
     
-    public function user_chat_rooms()
-    {
-        $chat_rooms->where('user1_id', auth()->user()->id)
-                       ->orWhere('user2_id', auth()->user()->id)
-                       ->get();
-        return $user_chat_room;
-    }
+    
     
     
 }

@@ -26,8 +26,29 @@ class ChatTableSeeder extends Seeder
         $chat->save();
         
         $chat = new \App\Chat([
-            'chat_room_id' =>'1',
+            'chat_room_id' =>'2',
             'message' =>'よろしく',
+            'send_user_id' =>'1'
+        ]);
+        $chat->save();
+        
+        $chat = new \App\Chat([
+            'chat_room_id' =>'3',
+            'message' =>'こんにちは',
+            'send_user_id' =>'1'
+        ]);
+        $chat->save();
+        
+        $chat = new \App\Chat([
+            'chat_room_id' =>'4',
+            'message' =>'こんにちは',
+            'send_user_id' =>'1'
+        ]);
+        $chat->save();
+        
+        $chat = new \App\Chat([
+            'chat_room_id' =>'5',
+            'message' =>'こんにちは',
             'send_user_id' =>'1'
         ]);
         $chat->save();
@@ -45,5 +66,27 @@ class ChatTableSeeder extends Seeder
             'send_user_id' =>'1'
         ]);
         $chat->save();
+        
+        $chat = new \App\Chat([
+            'chat_room_id' =>'7',
+            'message' =>'こんにちは',
+            'send_user_id' =>'2'
+        ]);
+        $chat->save();
+        
+        $chat = new \App\Chat([
+            'chat_room_id' =>'8',
+            'message' =>'こんにちは',
+            'send_user_id' =>'3'
+        ]);
+        $chat->save();
+        
+        $chat = new \App\Chat([
+            'chat_room_id' =>'9',
+            'message' =>'こんにちは',
+            'send_user_id' =>'4'
+        ]);
+        $chat->save();
+        
     }
 }
