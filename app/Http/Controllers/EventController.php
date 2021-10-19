@@ -68,7 +68,6 @@ class EventController extends Controller
     }
     public function store(Request $request, Event $event, User $user)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
-        dd($request);
         $input = $request['events'];//変数nputにリクエストインスタンスのevens配列を代入
         $input['user_id']=auth()->user()->id;//配列の追加を行っている。auth()はヘルパを参照
         $event->fill($input)->save();//イベントモデルに変数inputの値を入れる

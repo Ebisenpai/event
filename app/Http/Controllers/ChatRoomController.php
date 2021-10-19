@@ -13,8 +13,34 @@ class ChatRoomController extends Controller
     public function chat(Event $event ,ChatRoom $chatroom)
     {
         return view('chat')->with([
-            'chatrooms' =>$chatroom,
+            'chatroom' =>$chatroom,
+            'events' =>$event,
             ]);
     }
     
+    public function store(Request $request, Event $event ,ChatRoom $chatroom ,Chat $chat)
+    {
+        $input = $request['chats'];
+        //チャットルームの新規作成
+        $input_chat_rooms = [];
+        $input_chat_rooms['event_id'] = $input['event_id'];
+        $input_chat_rooms['user1_id'] = $input['send_user_id'];
+        $input_chat_rooms['user2_id'] = $input['receiver_id'];
+        $chatroom->fill($input_chat_rooms)->save();
+        
+        //作成したチャットルームidの取得
+        $created_chat_room = ChatRoom::where('user1_id', $input['send_user_id'])
+        ->where('user2_id', $input['receiver_id'])
+        ->where('event_id', $input['event_id'])->first();
+        
+        //dd(gettype($input['send_user_id']));
+        //dd(gettype($created_chat_room->id));
+        $input_chats = [];
+        $input_chats['chat_room_id'] = $created_chat_room->id;
+        $input_chats['message'] = $input['message'];
+        $input_chats['send_user_id'] = $input['send_user_id'];
+        //dd($input_chats);
+        $chat->fill($input_chats)->save();
+        return redirect('/events/'. $input['event_id'].'/'. $created_chat_room->id);
+    }
 }
