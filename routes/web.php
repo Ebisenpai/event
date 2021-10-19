@@ -19,6 +19,8 @@ Route::get('/events/{event}/{chatroom}', 'ChatRoomController@chat');
 Route::post('/events', 'EventController@store');
 Route::post('/admin', 'AdministratorController@store');
 Route::post('/invite', 'EventInvitationController@store');
+Route::post('/firstchats', 'ChatRoomController@store');
+Route::post('/chats', 'ChatController@store');
 Route::get('/login/line/', 'LineLoginController@index');
 Route::get('/login/line/callback','LineLoginController@callback');
 

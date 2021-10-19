@@ -5,6 +5,7 @@
         <title>Events</title>
     </head>
     <body>
+    <div class="px-3" style="color: black; background-color: white;">    
         <h1>Event Name</h1>
         <form action="/events" method="post">
             {{ csrf_field() }}
@@ -23,5 +24,6 @@
             <input type="submit" value="保存"/>
         </form>
         <div class="back">[<a href="/">back</a>]</div>
+    </div>    
     </body>
 </html>
