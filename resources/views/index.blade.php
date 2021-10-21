@@ -28,7 +28,7 @@
             </div>
             <div class="col-sm-6">
                 <h1>Created Event Name</h1>
-                    <a class="btn btn-primary" href='/events/create'>create</a>
+                    <a class="btn btn-primary" href='/events/create'>イベント作成</a>
                     <div class='events'>
                         @foreach (Auth::user()->created_events()->get() as $event)  {{--eventsは複数データが入っていて$eventが単一のデータ--}}
                             <div class='event'>
@@ -37,10 +37,6 @@
                             </div>
                         @endforeach
                     </div>
-            </dev>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
                 <h1>Event Invitations</h1>
                 <div class='events'>
                     @foreach (Auth::user()->invited_events()->get() as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
@@ -54,19 +50,9 @@
                             </form>
                         </div>
                     @endforeach
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h1>Created Event Name</h1>
-                    <div class='events'>
-                        @foreach (Auth::user()->admin_events()->get() as $event)  {{--eventsは複数データが入っていて$eventが単一のデータ--}}
-                            <div class='event'>
-                                <a href='/events/{{$event->id}}'><h2 class='title'>{{ $event->title }}</h2></a>
-                                <p class='outline'>{{ $event->outline}}</p>
-                            </div>
-                        @endforeach
-                    </div>
+                </div>    
             </dev>
+        </div>
         </div>
     </div>
     </body>
