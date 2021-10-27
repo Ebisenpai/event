@@ -18,7 +18,7 @@
         <div class="col-sm-6">
                 <h1>Event Name</h1>
                 <div class='events'>
-                    @foreach ($events as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
+                    @foreach (Auth::user()->invited_events()->get() as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
                         <div class='event'>
                             <a href='/events/{{$event->id}}'><h2 class='title'>{{ $event->title }}</h2></a>
                             <p class='outline'>{{ $event->outline}}</p>
@@ -56,17 +56,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-sm-6">
-                <h1>Created Event Name</h1>
-                    <div class='events'>
-                        @foreach (Auth::user()->admin_events()->get() as $event)  {{--eventsは複数データが入っていて$eventが単一のデータ--}}
-                            <div class='event'>
-                                <a href='/events/{{$event->id}}'><h2 class='title'>{{ $event->title }}</h2></a>
-                                <p class='outline'>{{ $event->outline}}</p>
-                            </div>
-                        @endforeach
-                    </div>
-            </dev>
+            
         </div>
     </div>
     </body>

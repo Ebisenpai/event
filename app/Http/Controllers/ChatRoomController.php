@@ -33,13 +33,11 @@ class ChatRoomController extends Controller
         ->where('user2_id', $input['receiver_id'])
         ->where('event_id', $input['event_id'])->first();
         
-        //dd(gettype($input['send_user_id']));
-        //dd(gettype($created_chat_room->id));
+        //チャットの送信
         $input_chats = [];
         $input_chats['chat_room_id'] = $created_chat_room->id;
         $input_chats['message'] = $input['message'];
         $input_chats['send_user_id'] = $input['send_user_id'];
-        //dd($input_chats);
         $chat->fill($input_chats)->save();
         return redirect('/events/'. $input['event_id'].'/'. $created_chat_room->id);
     }
