@@ -7,6 +7,7 @@ use App\User;
 use App\Chat;
 use App\ChatRoom;
 use App\EventInvitation;
+use App\Administrator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,11 +67,29 @@ class EventController extends Controller
     {
         return view('create');
     }
-    public function store(Request $request, Event $event, User $user)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
+    public function store(Request $request, Event $event, User $user, EventInvitation $event_invitation, Administrator $administrator)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
+        //新規イベントの登録
         $input = $request['events'];//変数nputにリクエストインスタンスのevens配列を代入
         $input['user_id']=auth()->user()->id;//配列の追加を行っている。auth()はヘルパを参照
         $event->fill($input)->save();//イベントモデルに変数inputの値を入れる
+        
+        //作成したイベントidの取得
+        $created_event = Event::where('user_id', $input['user_id'])
+        ->where('title', $input['title'])
+        ->where('outline', $input['outline'])->first();
+        
+        //イベント作成者をイベント参加者に登録
+        $input_event_invitation['invited_user'] = $input['user_id'];
+        $input_event_invitation['inviting_user'] = $input['user_id'];
+        $input_event_invitation['event_id'] = $created_event->id;
+        $event_invitation->fill($input_event_invitation)->save();
+        
+        //イベント作成者をイベント管理者に登録
+        $input_administrator['user_id'] = $input['user_id'];
+        $input_administrator['event_id'] = $created_event->id;
+        $administrator->fill($input_administrator)->save();
+        
         return redirect('/events/' . $event->id);
     }
     public function approve(Request $request, Event $event, EventInvitation $eventinvitation)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
@@ -81,5 +100,12 @@ class EventController extends Controller
         $eventinvitation->save();
         return redirect('/events/');
     }
+    
+    public function delete(Event $event)
+    {
+      $event->delete();
+      return redirect('events/');
+    }
+
 }
 ?>

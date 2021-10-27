@@ -15,13 +15,16 @@ Route::get('/events', 'EventController@index');
 Route::get('/events/create', 'EventController@create');
 Route::post('/events/approve', 'EventController@approve');
 Route::get('/events/{event}', 'EventController@show');
+Route::delete('/events/{event}', 'EventController@delete');
 Route::get('/events/{event}/{chatroom}', 'ChatRoomController@chat');
 Route::post('/events', 'EventController@store');
 Route::post('/admin', 'AdministratorController@store');
 Route::post('/invite', 'EventInvitationController@store');
 Route::post('/firstchats', 'ChatRoomController@store');
 Route::post('/chats', 'ChatController@store');
+Route::post('/members','MemberController@store');
 Route::get('/login/line/', 'LineLoginController@index');
 Route::get('/login/line/callback','LineLoginController@callback');
+
 
 
