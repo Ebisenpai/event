@@ -83,6 +83,7 @@ class EventController extends Controller
         $input_event_invitation['invited_user'] = $input['user_id'];
         $input_event_invitation['inviting_user'] = $input['user_id'];
         $input_event_invitation['event_id'] = $created_event->id;
+        $input_event_invitation['invitation_status'] = 1;
         $event_invitation->fill($input_event_invitation)->save();
         
         //イベント作成者をイベント管理者に登録

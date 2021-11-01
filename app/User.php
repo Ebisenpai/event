@@ -56,6 +56,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Event','event_invitations','invited_user','event_id')->wherePivot('invitation_status', 0);
     }
     
+    //イベント招待テーブルの招待先が自分かつ招待ステータスが0のイベントを表示する
+    public function joined_events()
+    {
+        return $this->belongsToMany('App\Event','event_invitations','invited_user','event_id')->wherePivot('invitation_status', 1);
+    }
+    
     function IdentityProviders()
     {
         // IdentityProviderモデルと紐付ける 1対多の関係
