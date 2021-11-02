@@ -20,7 +20,7 @@
             {{ csrf_field() }}
             <input type="hidden" name='chats[chat_room_id]' value={{$chatroom->id}}>
             <div class="message">
-                <textarea name="chats[message]" placeholder="久しぶり。"></textarea>
+                <textarea name="chats[message]" placeholder="メッセージを入力"></textarea>
             </div>
             <input type="hidden" name='chats[send_user_id]' value={{Auth::user()->id}}>
             <input type="hidden" name='chats[event_id]' value={{$events->id}}>

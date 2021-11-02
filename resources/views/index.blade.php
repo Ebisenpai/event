@@ -27,7 +27,9 @@
                 </div>
             </div>
             <div class="col-sm-6">
+
                 <h2>作成したイベント</h2>
+
                     <div class='events'>
                         @foreach (Auth::user()->created_events()->get() as $event)  {{--eventsは複数データが入っていて$eventが単一のデータ--}}
                             <div class='event'>
@@ -43,6 +45,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <h2>招待</h2>
+
                 <div class='events'>
                     @foreach (Auth::user()->invited_events()->get() as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
                         <div class='event'>
@@ -55,9 +58,12 @@
                             </form>
                         </div>
                     @endforeach
+
                 </div>
             </div>
             
+
+        </div>
         </div>
     </div>
     </body>
