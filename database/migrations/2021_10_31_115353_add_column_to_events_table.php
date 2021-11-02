@@ -15,11 +15,11 @@ class AddColumnToEventsTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             
-            //$table->string('date', 100);
-            //$table->string('place', 100);
-            //$table->string('cost', 100);
-            //$table->string('time_limit', 100);
-            //$table->string('others', 1000);
+            $table->string('date', 100);
+            $table->string('place', 100);
+            $table->string('cost', 100);
+            $table->string('time_limit', 100);
+            $table->string('others', 1000);
         });
     }
 
@@ -32,11 +32,11 @@ class AddColumnToEventsTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             //$table->dropColumn('body');
-            $table->string('date', 100)->nullable(false)->change();
-            $table->string('place', 100)->nullable(false)->change();
-            $table->string('cost', 100)->nullable(false)->change();
-            $table->string('time_limit', 100)->nullable(false)->change();
-            $table->string('others', 1000)->nullable(false)->change();
+            $table->string('date', 100);
+            $table->string('place', 100);
+            $table->string('cost', 100);
+            $table->string('time_limit', 100)();
+            $table->string('others', 1000);
         });
     }
 }
