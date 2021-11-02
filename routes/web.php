@@ -25,6 +25,6 @@ Route::post('/chats', 'ChatController@store');
 Route::post('/members','MemberController@store');
 Route::get('/login/line/', 'LineLoginController@index');
 Route::get('/login/line/callback','LineLoginController@callback');
-
-
+Route::post('/participate', 'EventController@participate');
+Route::post('/nonparticipate', 'EventController@nonparticipate');
 

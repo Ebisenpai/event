@@ -12,7 +12,6 @@
     <body>
     <div class="px-3" style="color: black; background-color: white;">    
         <div class="row">
-
             <div class="col-sm-12">
 
                 <p align="left">
@@ -67,12 +66,26 @@
                         <div class="pl-3">
                             {{ $events->others }}   
                         </div>    
-
                     </div>
                 </p>
-                <div class="footer">
-                    <a href="/events">戻る</a>
-                </div>
+            </div>
+        </div>
+        <div class="row">    
+            <div class="col-sm-1">
+                <form action="/participate/" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name='eventinvitations[event_id]' value={{$events->id}}>
+                    <input type="submit" class="btn btn-primary" value="参加" />    
+                </form>        
+            </div>
+            <div class="col-sm-1">
+                <form action="/nonparticipate/" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name='eventinvitations[event_id]' value={{$events->id}}>
+                    <input type="submit" class="btn btn-primary" value="不参加" />    
+                </form>        
+            </div>
+            <div class="col-sm-2">
                 @if($events->creatorCheck())
                     <form action="/events/{{ $events->id }}" id="form_{{ $events->id }}" method="post" style="display:inline">
                       @csrf
@@ -80,9 +93,13 @@
                       <button type="submit">イベント削除</button>
                     </form>
                 @endif
+            </div>
+            <div class="footer">
+                <a href="/events">戻る</a>
+            </div>
             </div><br>
         </div>    
-        <div class="row py-4 bg-light">
+        <div class="row py-4 px-3 bg-light">
             <div class="col-sm-4">
                 {{--イベント招待機能--}}
                 @if($events->adminCheck())
@@ -119,46 +136,6 @@
                     <input type="submit" value="保存"/>
                 </form>
                 @endif
-
-                    </p> 
-                    <a href="/events/">イベント一覧に戻る</a>
-                </div>
-            </div>    
-            <div class="col-sm-3 ">    
-                <div class ="center">
-                    @if($events->creatorCheck())
-                    <form action="/admin/" method="post">
-                        {{ csrf_field() }}
-                        管理者の追加
-                        <div class ="selection">
-                            <select name="administrators[user_id]">
-                                @foreach ($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <input type="hidden" name='administrators[event_id]' value={{$events->id}}>
-                        <input type="submit" value="保存"/>
-                    </form>
-                    @endif
-                    @if($events->adminCheck())
-                    <form action="/invite" method="post">
-                        {{ csrf_field() }}
-                        イベント招待
-                        <div class ="selection">
-                            <select name="eventinvitations[invited_user]">
-                                @foreach ($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <input type="hidden" name='eventinvitations[event_id]' value={{$events->id}}>
-                        <input type="submit" value="保存"/>
-                    </form>
-                    @endif
-                    <div class="footer"></div>
-                </div>
-
             </div>    
             <div class="col-sm-4">
                 {{--名簿登録機能--}}
@@ -178,19 +155,16 @@
                 </form>
             </div>   
         </div>
-        <div class="row">
+        <div class="row py-2 px-3 bg-white">
             <div class="col-sm-6">
-
                 <h2>チャット一覧</h2>
                 @foreach ($chat_rooms as $chatroom){{--user1かuse2に自分が入っている場合のみ--}}
                     <div class='chatroom'>
                         <h5>
                             <a href='/events/{{$events->id}}/{{$chatroom->id}}'>{{$chatroom->partner()}}  {{$chatroom->latest_chat()}}</a>
                         </h5>
-
                     </div>
                 @endforeach
-                
             </div>{{--新規メッセージ送信--}}
             <div class="col-sm-6">
                 <form action="/firstchats" method="post">
