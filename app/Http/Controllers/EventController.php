@@ -107,6 +107,28 @@ class EventController extends Controller
       $event->delete();
       return redirect('events/');
     }
+    
+    public function participate(Request $request, Event $event)
+    {
+        $eventinvitation = EventInvitation::where('event_id', $request['eventinvitations'])
+        ->where('invited_user', auth()->user()->id)->first();
+        $eventinvitation->paticipation_status = 1;
+        $eventinvitation->save();
+        $event_id_array = $request['eventinvitations'];
+        $event_id = $event_id_array['event_id'];
+        return redirect('/events/' . $event_id);
+    }
+    
+    public function nonparticipate(Request $request, Event $event)
+    {
+        $eventinvitation = EventInvitation::where('event_id', $request['eventinvitations'])
+        ->where('invited_user', auth()->user()->id)->first();
+        $eventinvitation->paticipation_status = 0;
+        $eventinvitation->save();
+        $event_id_array = $request['eventinvitations'];
+        $event_id = $event_id_array['event_id'];
+        return redirect('/events/' . $event_id);
+    }
 
 }
 ?>
