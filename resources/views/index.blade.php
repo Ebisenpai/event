@@ -16,9 +16,9 @@
                 <input type="submit" value="logout"/>
             </form>
         <div class="col-sm-6">
-                <h1>Event Name</h1>
+                <h2>イベント一覧</h2>
                 <div class='events'>
-                    @foreach (Auth::user()->invited_events()->get() as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
+                    @foreach (Auth::user()->joined_events()->get() as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
                         <div class='event'>
                             <a href='/events/{{$event->id}}'><h2 class='title'>{{ $event->title }}</h2></a>
                             <p class='outline'>{{ $event->outline}}</p>
@@ -27,8 +27,9 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <h1>Created Event Name</h1>
-                    <a class="btn btn-primary" href='/events/create'>イベント作成</a>
+
+                <h2>作成したイベント</h2>
+
                     <div class='events'>
                         @foreach (Auth::user()->created_events()->get() as $event)  {{--eventsは複数データが入っていて$eventが単一のデータ--}}
                             <div class='event'>
@@ -37,7 +38,14 @@
                             </div>
                         @endforeach
                     </div>
-                <h1>Event Invitations</h1>
+                    <a class="btn btn-primary" href='/events/create'>イベント作成</a>
+                    
+            </dev>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>招待</h2>
+
                 <div class='events'>
                     @foreach (Auth::user()->invited_events()->get() as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
                         <div class='event'>

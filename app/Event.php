@@ -13,7 +13,11 @@ class Event extends Model
     protected $fillable = [
     'title',
     'outline',
-    'body',
+    'date',
+    'place',
+    'cost',
+    'time_limit',
+    'others',
     'user_id',
     'invitation_status'
     ];
