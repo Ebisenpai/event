@@ -20,6 +20,7 @@ class AddColumnToEventsTable extends Migration
             $table->string('cost', 100);
             $table->string('time_limit', 100);
             $table->string('others', 1000);
+            $table->string('body', 1000)->nullable();
         });
     }
 
@@ -37,6 +38,7 @@ class AddColumnToEventsTable extends Migration
             $table->string('cost', 100);
             $table->string('time_limit', 100)();
             $table->string('others', 1000);
+            $table->string('body', 1000)->nullable();
         });
     }
 }
