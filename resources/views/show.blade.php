@@ -137,23 +137,25 @@
                 </form>
                 @endif
             </div>    
-            <div class="col-sm-4">
-                {{--名簿登録機能--}}
-                <form action="/members/" method="post">
-                    {{ csrf_field() }}
-                    <h4>名簿の登録</h4>
-                    <div class="name">
-                        名前
-                        <input type="text" name="members[name]" placeholder="阿部颯紀"/>
-                    </div>
-                    <div class="name">
-                        分類
-                        <input type="text" name="members[category]" placeholder="3年5組"/>
-                        <input type="hidden" name='members[event_id]' value={{$events->id}}>
-                        <input type="submit" value="保存"/>
-                    </div>
-                </form>
-            </div>   
+            @if($events->adminCheck())
+                <div class="col-sm-4">
+                    {{--名簿登録機能--}}
+                    <form action="/members/" method="post">
+                        {{ csrf_field() }}
+                        <h4>名簿の登録</h4>
+                        <div class="name">
+                            名前
+                            <input type="text" name="members[name]" placeholder="阿部颯紀"/>
+                        </div>
+                        <div class="name">
+                            分類
+                            <input type="text" name="members[category]" placeholder="3年5組"/>
+                            <input type="hidden" name='members[event_id]' value={{$events->id}}>
+                            <input type="submit" value="保存"/>
+                        </div>
+                    </form>
+                </div>   
+            @endif    
         </div>
         <div class="row py-2 px-3 bg-white">
             <div class="col-sm-6">
@@ -165,6 +167,7 @@
                         </h5>
                     </div>
                 @endforeach
+                
             </div>{{--新規メッセージ送信--}}
             <div class="col-sm-6">
                 <form action="/firstchats" method="post">
