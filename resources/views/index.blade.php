@@ -16,6 +16,12 @@
                 {{ csrf_field() }}
                 <input type="submit" value="logout"/>
             </form>
+        <!-- フラッシュメッセージ -->
+        @if (session('flash_message'))
+            <div class="bg-danger">
+                {{session('flash_message' )}}
+            </div>
+        @endif
         <div class="col-sm-6">
                 <h2>イベント一覧</h2>
                 <div class='events'>

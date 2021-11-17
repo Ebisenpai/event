@@ -93,14 +93,19 @@ class EventController extends Controller
         
         return redirect('/events/' . $event->id);
     }
-    public function approve(Request $request, Event $event, EventInvitation $eventinvitation)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
+    public function approve(Request $request, Event $event, EventInvitation $eventinvitation, User $user)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
-        
-        $matchThese = ['event_id' => $request['inviting'], 'invited_user' => auth()->user()->id];
-        $eventinvitation = EventInvitation::where($matchThese)->first();
-        $eventinvitation->invitation_status = 1;
-        $eventinvitation->save();
-        return redirect('/events/');
+        if($user->check_member())
+        {
+            $matchThese = ['event_id' => $request['inviting'], 'invited_user' => auth()->user()->id];
+            $eventinvitation = EventInvitation::where($matchThese)->first();
+            $eventinvitation->invitation_status = 1;
+            $eventinvitation->save();
+            return redirect('/events/');
+        }
+        else{
+            return redirect('/events/')->with('flash_message', '名簿にあなたの名前が無いためイベントに参加できません。このイベントの幹事に問い合わせてください。');
+        }
     }
     
     public function delete(Event $event)

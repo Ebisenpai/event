@@ -12,7 +12,6 @@
     </head>
     <body>
     <div class="px-3" style="color: black; background-color: white;">    
-    
         <div class="row">
             <div class="col-sm-12">
 

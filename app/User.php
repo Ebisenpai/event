@@ -3,9 +3,11 @@
 namespace App;
 
 use App\Event;
+use App\Member;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -68,5 +70,11 @@ class User extends Authenticatable
         return $this->hasMany(IdentityProvider::class);
     }
     
+    public function check_member()
+    {
+        $user_name = Auth::user()->name;
+        $member_name = Member::where('name', $user_name)->first();
+        return isset($member_name);
+    }
     
 }
