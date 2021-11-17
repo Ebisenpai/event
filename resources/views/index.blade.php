@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        @include("header")
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>event</title>
@@ -42,7 +43,7 @@
                     
             </dev>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-sm-6">
                 <h2>招待</h2>
 
@@ -58,13 +59,11 @@
                             </form>
                         </div>
                     @endforeach
-
                 </div>
             </div>
-            
-
         </div>
         </div>
     </div>
+    @include("footer")
     </body>
 </html>

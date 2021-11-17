@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
     <head>
+        @include("header")
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Events</title>
@@ -11,6 +12,7 @@
     </head>
     <body>
     <div class="px-3" style="color: black; background-color: white;">    
+    
         <div class="row">
             <div class="col-sm-12">
 
@@ -159,7 +161,7 @@
         </div>
         <div class="row py-2 px-3 bg-white">
             <div class="col-sm-6">
-                <h2>チャット一覧</h2>
+                <h2>メッセージ一覧</h2>
                 @foreach ($chat_rooms as $chatroom){{--user1かuse2に自分が入っている場合のみ--}}
                     <div class='chatroom'>
                         <h5>
@@ -192,6 +194,7 @@
                 </form>
             </div>
         </div>
-    </div>    
+    </div>
+    @include("footer")
     </body>
 </html>

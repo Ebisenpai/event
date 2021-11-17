@@ -95,6 +95,7 @@ class EventController extends Controller
     }
     public function approve(Request $request, Event $event, EventInvitation $eventinvitation)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
+        
         $matchThese = ['event_id' => $request['inviting'], 'invited_user' => auth()->user()->id];
         $eventinvitation = EventInvitation::where($matchThese)->first();
         $eventinvitation->invitation_status = 1;
