@@ -79,6 +79,12 @@ class EventController extends Controller
         ->where('title', $input['title'])
         ->where('outline', $input['outline'])->first();
         
+        //イベント作成者をイベント管理者に登録
+        $input_administrator['user_id'] = $input['user_id'];
+        $input_administrator['event_id'] = $created_event->id;
+        $administrator->fill($input_administrator)->save();
+    
+        
         //イベント作成者をイベント参加者に登録
         $input_event_invitation['invited_user'] = $input['user_id'];
         $input_event_invitation['inviting_user'] = $input['user_id'];
@@ -86,10 +92,6 @@ class EventController extends Controller
         $input_event_invitation['invitation_status'] = 1;
         $event_invitation->fill($input_event_invitation)->save();
         
-        //イベント作成者をイベント管理者に登録
-        $input_administrator['user_id'] = $input['user_id'];
-        $input_administrator['event_id'] = $created_event->id;
-        $administrator->fill($input_administrator)->save();
         
         return redirect('/events/' . $event->id);
     }
