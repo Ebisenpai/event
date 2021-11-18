@@ -31,11 +31,11 @@ class ChangeNullableToEventsTable extends Migration
     public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->string('date', 100)->nullable(false);
-            $table->string('place', 100)->nullable(false);
-            $table->string('cost', 100)->nullable(false);
-            $table->string('time_limit', 100)->nullable(false);
-            $table->string('others', 1000)->nullable(false);
+            $table->string('date', 100)->nullable(false)->change();
+            $table->string('place', 100)->nullable(false)->change();
+            $table->string('cost', 100)->nullable(false)->change();
+            $table->string('time_limit', 100)->nullable(false)->change();
+            $table->string('others', 1000)->nullable(false)->change();
         
         });
     }
