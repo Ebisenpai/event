@@ -37,7 +37,6 @@ class AddColumnToEventsTable extends Migration
             $table->dropColumn('cost');
             $table->dropColumn('time_limit');
             $table->dropColumn('others');
-            $table->string('body', 1000);
         });
     }
 }
