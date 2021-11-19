@@ -17,10 +17,10 @@ class CreateChatRoomsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
-            $table->bigInteger('user1_id')->unsigned();
-            $table->foreign('user1_id')->references('id')->on('users');
-            $table->bigInteger('user2_id')->unsigned();
-            $table->foreign('user2_id')->references('id')->on('users');
+            $table->bigInteger('first_user_id')->unsigned();
+            $table->foreign('first_user_id')->references('id')->on('users');
+            $table->bigInteger('member_id')->unsigned();
+            $table->foreign('member_id')->references('id')->on('members');
             $table->timestamps();
         });
     }
