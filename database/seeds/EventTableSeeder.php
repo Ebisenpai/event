@@ -12,10 +12,40 @@ class EventTableSeeder extends Seeder
     public function run()
     {
         $event = new \App\User([
-            'title' = title3,
+            'title' = '○○高校　△△期　同窓会',
             'outline' =,
-            'body' =,
+            'date' =,
+            'place' =,
+            'cost' =,
+            'time_limit' =,
+            'others' =,
             'user_id'=
-            ])
+            ]);
+        $event->save();
+        
+        $event = new \App\User([
+            'title' = ,
+            'outline' =,
+            'date' =,
+            'place' =,
+            'cost' =,
+            'time_limit' =,
+            'others' =,
+            'user_id'=
+            ]);
+        $event->save();
+        
+        $event = new \App\User([
+            'title' = ,
+            'outline' =,
+            'date' =,
+            'place' =,
+            'cost' =,
+            'time_limit' =,
+            'others' =,
+            'user_id'=
+            ]);
+        $event->save();
+                
     }
 }

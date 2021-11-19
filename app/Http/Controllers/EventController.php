@@ -21,16 +21,16 @@ class EventController extends Controller
     {
          $chat_rooms = $event->chat_rooms();
          $chat_rooms = $chat_rooms->where(function($query){
-                    $query->where('user1_id', auth()->user()->id)
-                            ->orWhere('user2_id', auth()->user()->id);
+                    $query->where('first_user_id', auth()->user()->id)
+                            ->orWhere('member_id', auth()->user()->id);
                             })->get();
         //authがチャットしているユーザーの配列
         $array = array();
         foreach($chat_rooms as $chatroom){
-            if($chatroom->user1_id != Auth::id()){
-                $array[] = $chatroom->user1_id;
+            if($chatroom->first_user_id != Auth::id()){
+                $array[] = $chatroom->first_user_id;
             }else{
-                $array[] = $chatroom->user2_id;
+                $array[] = $chatroom->member_id;
             }
         }
         $sent_user_id = $array;

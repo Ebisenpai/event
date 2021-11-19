@@ -161,7 +161,7 @@
         <div class="row py-2 px-3 bg-white">
             <div class="col-sm-6">
                 <h2>メッセージ一覧</h2>
-                @foreach ($chat_rooms as $chatroom){{--user1かuse2に自分が入っている場合のみ--}}
+                @foreach ($chat_rooms as $chatroom){{--first_userかuse2に自分が入っている場合のみ--}}
                     <div class='chatroom'>
                         <h5>
                             <a href='/events/{{$events->id}}/{{$chatroom->id}}'>{{$chatroom->partner()}}  {{$chatroom->latest_chat()}}</a>

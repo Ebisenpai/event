@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 class ChatRoom extends Model
 {
     protected $fillable = [
-    'user1_id',
-    'user2_id',
+    'first_user_id',
+    'member_id',
     'event_id',
     ];
     
@@ -30,9 +30,9 @@ class ChatRoom extends Model
    public function partner()
    {
     if($this->user1_id != Auth::id()){
-        $partner_id=$this->user1_id;
+        $partner_id=$this->first_user_id;
         }else{
-        $partner_id=$this->user2_id;
+        $partner_id=$this->member_id;
         }
     $partner=User::where('id',$partner_id)->first();
     $partner_name=$partner->name;

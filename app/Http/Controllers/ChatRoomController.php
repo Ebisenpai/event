@@ -24,13 +24,13 @@ class ChatRoomController extends Controller
         //チャットルームの新規作成
         $input_chat_rooms = [];
         $input_chat_rooms['event_id'] = $input['event_id'];
-        $input_chat_rooms['user1_id'] = $input['send_user_id'];
-        $input_chat_rooms['user2_id'] = $input['receiver_id'];
+        $input_chat_rooms['first_user_id'] = $input['send_user_id'];
+        $input_chat_rooms['member_id'] = $input['receiver_id'];
         $chatroom->fill($input_chat_rooms)->save();
         
         //作成したチャットルームidの取得
-        $created_chat_room = ChatRoom::where('user1_id', $input['send_user_id'])
-        ->where('user2_id', $input['receiver_id'])
+        $created_chat_room = ChatRoom::where('first_user_id', $input['send_user_id'])
+        ->where('member_id', $input['receiver_id'])
         ->where('event_id', $input['event_id'])->first();
         
         //チャットの送信
