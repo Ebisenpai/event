@@ -27,11 +27,17 @@ class EventInvitationSeeder extends Seeder
         $event_invitation->save(); 
         $event_invitation = new \App\EventInvitation([
             'event_id' => 3,
-            'inviting_user' => 2,
-            'invited_user' => 2,
+            'inviting_user' => 1,
+            'invited_user' => 1,
             'invitation_status' =>1 ,
             ]);
         $event_invitation->save(); 
+        $event_invitation = new \App\EventInvitation([
+            'event_id' => 1,
+            'inviting_user' => 1,
+            'invited_user' => 2
+            ]);
+        $event_invitation->save();
         $event_invitation = new \App\EventInvitation([
             'event_id' => 2,
             'inviting_user' => 2,
@@ -40,8 +46,8 @@ class EventInvitationSeeder extends Seeder
         $event_invitation->save();  
         $event_invitation = new \App\EventInvitation([
             'event_id' => 3,
-            'inviting_user' => 2,
-            'invited_user' => 1
+            'inviting_user' => 1,
+            'invited_user' => 2
             ]);
         $event_invitation->save();  
     }

@@ -12,7 +12,16 @@ class EventInvitationController extends Controller
     {
         $input = $request['eventinvitations'];//変数nputにリクエストインスタンスのevens配列を代入
         $input['inviting_user']=auth()->user()->id;//配列の追加を行っている。auth()はヘルパを参照
-        $eventinvitation->fill($input)->save();//イベントモデルに変数inputの値を入れる
-        return redirect('/events/' . $event->id);
+        $invitation = Eventinvitation::where('event_id', $input['event_id'])
+        ->where('invited_user', $input['invited_user'])->get();
+        if($invitation->isEmpty())
+        {
+            $eventinvitation->fill($input)->save();//イベントモデルに変数inputの値を入れる
+            return redirect('/events/' . $event->id);
+        }
+        else{
+            return redirect('/events/' . $event->id);
+        }
+        
     }
 }

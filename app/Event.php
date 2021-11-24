@@ -49,7 +49,12 @@ class Event extends Model
         return $this->hasMany('App\ChatRoom','event_id');
     }
     
-    
+    public function participate_users()
+    {
+        $participate_users = $this->invited_users()
+        ->where('paticipation_status', 1);
+        return $participate_users;
+    }
     
     
 }

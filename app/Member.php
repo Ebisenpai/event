@@ -9,6 +9,7 @@ class Member extends Model
     protected $fillable = [
     'event_id',
     'name',
-    'category'
+    'category',
+    'user_id'
     ];
 }

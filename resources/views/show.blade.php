@@ -193,6 +193,12 @@
                 </form>
             </div>
         </div>
+        <div class="row py-4 px-3 bg-light">
+            <h2>参加者一覧</h2>
+            @foreach($events->participate_users()->get() as $paticipate_user)
+                {{$paticipate_user['name']}}, 
+            @endforeach
+        </div>    
     </div>
     @include("footer")
     </body>

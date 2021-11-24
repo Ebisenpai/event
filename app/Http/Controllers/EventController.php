@@ -6,6 +6,7 @@ use App\Event;
 use App\User;
 use App\Chat;
 use App\ChatRoom;
+use App\Member;
 use App\EventInvitation;
 use App\Administrator;
 use Illuminate\Http\Request;
@@ -67,11 +68,12 @@ class EventController extends Controller
     {
         return view('create');
     }
-    public function store(Request $request, Event $event, User $user, EventInvitation $event_invitation, Administrator $administrator)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
+    public function store(Request $request, Event $event, User $user, EventInvitation $event_invitation, Administrator $administrator, Member $member)//用意されているリクエストインスタンスの使用、eventインスタンスの使用
     {
         //新規イベントの登録
         $input = $request['events'];//変数nputにリクエストインスタンスのevens配列を代入
         $input['user_id']=auth()->user()->id;//配列の追加を行っている。auth()はヘルパを参照
+        $input['name']=auth()->user()->name;
         $event->fill($input)->save();//イベントモデルに変数inputの値を入れる
         
         //作成したイベントidの取得
@@ -83,7 +85,6 @@ class EventController extends Controller
         $input_administrator['user_id'] = $input['user_id'];
         $input_administrator['event_id'] = $created_event->id;
         $administrator->fill($input_administrator)->save();
-    
         
         //イベント作成者をイベント参加者に登録
         $input_event_invitation['invited_user'] = $input['user_id'];
@@ -92,6 +93,11 @@ class EventController extends Controller
         $input_event_invitation['invitation_status'] = 1;
         $event_invitation->fill($input_event_invitation)->save();
         
+        //イベント作成者を名簿に登録
+        $input_member['event_id'] = $created_event->id;
+        $input_member['name'] = $input['name'];
+        $input_member['user_id'] = $input['user_id'];
+        $member->fill($input_member)->save();
         
         return redirect('/events/' . $event->id);
     }
