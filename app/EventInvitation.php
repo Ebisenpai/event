@@ -11,5 +11,6 @@ class EventInvitation extends Model
     'inviting_user',
     'invited_user',
     'event_id',
+    'invitation_status'
     ];
 }

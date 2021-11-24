@@ -25,7 +25,7 @@ class AdministratorSeeder extends Seeder
         
         $administrator = new \App\Administrator([
             'event_id' =>3,
-            'user_id' =>2
+            'user_id' =>1
         ]);
         $administrator->save();    
     }

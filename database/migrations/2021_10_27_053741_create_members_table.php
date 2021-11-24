@@ -18,7 +18,9 @@ class CreateMembersTable extends Migration
             $table->bigInteger('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
             $table->string('name', 100);
-            $table->string('category', 100);
+            $table->string('category', 100)->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

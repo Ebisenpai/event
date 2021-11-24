@@ -12,14 +12,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new \App\User([
-            'name' =>'あべさつき',
+            'name' =>'山田花子',
             'email' =>'satsukiabe0328@gmail.com',
             'password'=>Hash::make('abesatsu328')
         ]);
         $user->save();
         
         $user = new \App\User([
-            'name' =>'室賀大輝',
+            'name' =>'あべさつき',
             'email' =>'satuki328glk@yahoo.co.jp',
             'password'=>Hash::make('abesatsu328')
         ]);
@@ -40,7 +40,7 @@ class UserTableSeeder extends Seeder
         $user->save();
         
         $user = new \App\User([
-            'name' =>'山田花子',
+            'name' =>'室賀大輝',
             'email' =>'yamada@yahoo.co.jp',
             'password'=>Hash::make('abesatsu328')
         ]);

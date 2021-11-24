@@ -22,7 +22,7 @@ class CreateEventInvitationsTable extends Migration
             $table->bigInteger('invited_user')->unsigned();
             $table->foreign('invited_user')->references('id')->on('users');
             $table->timestamps();
-            $table->binary('invitation_status')->default(0);
+            $table->binary('invitation_status')->nullable();
             $table->timestamp('accept_invitation_time')->nullable();
             $table->binary('paticipation_status')->default(0);
             $table->timestamp('accept_paticipation_time')->nullable();
