@@ -130,7 +130,7 @@ class EventController extends Controller
         $eventinvitation->save();
         $event_id_array = $request['eventinvitations'];
         $event_id = $event_id_array['event_id'];
-        return redirect('/events/' . $event_id);
+        return redirect('/events/' );
     }
     
     public function nonparticipate(Request $request, Event $event)
@@ -141,7 +141,7 @@ class EventController extends Controller
         $eventinvitation->save();
         $event_id_array = $request['eventinvitations'];
         $event_id = $event_id_array['event_id'];
-        return redirect('/events/' . $event_id);
+        return redirect('/events/' );
     }
 
 }
