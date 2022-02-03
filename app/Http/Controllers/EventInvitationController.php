@@ -17,10 +17,10 @@ class EventInvitationController extends Controller
         if($invitation->isEmpty())
         {
             $eventinvitation->fill($input)->save();//イベントモデルに変数inputの値を入れる
-            return redirect('/events/' . $event->id);
+            return redirect('/events' . $event->id);
         }
         else{
-            return redirect('/events/' . $event->id);
+            return redirect('/events' . $event->id);
         }
         
     }

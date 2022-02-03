@@ -39,6 +39,6 @@ class ChatRoomController extends Controller
         $input_chats['message'] = $input['message'];
         $input_chats['send_user_id'] = $input['send_user_id'];
         $chat->fill($input_chats)->save();
-        return redirect('/events/'. $input['event_id'].'/'. $created_chat_room->id);
+        return redirect('/events'. $input['event_id'].'/'. $created_chat_room->id);
     }
 }

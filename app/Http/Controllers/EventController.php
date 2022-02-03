@@ -35,7 +35,7 @@ class EventController extends Controller
             }
         }
         $sent_user_id = $array;
-        //dd($sent_user_id);
+        
        
         //招待ユーザーidの配列を作る
         $invited_users=$event->invited_users()->get();
@@ -109,17 +109,17 @@ class EventController extends Controller
             $eventinvitation = EventInvitation::where($matchThese)->first();
             $eventinvitation->invitation_status = 1;
             $eventinvitation->save();
-            return redirect('/events/');
+            return redirect('/events');
         }
         else{
-            return redirect('/events/')->with('flash_message', '名簿にあなたの名前が無いためイベントに参加できません。このイベントの幹事に問い合わせてください。');
+            return redirect('/events')->with('flash_message', '名簿にあなたの名前が無いためイベントに参加できません。このイベントの幹事に問い合わせてください。');
         }
     }
     
     public function delete(Event $event)
     {
       $event->delete();
-      return redirect('events/');
+      return redirect('events');
     }
     
     public function participate(Request $request, Event $event)
@@ -130,7 +130,7 @@ class EventController extends Controller
         $eventinvitation->save();
         $event_id_array = $request['eventinvitations'];
         $event_id = $event_id_array['event_id'];
-        return redirect('/events/' );
+        return redirect('/events/' . $event_id);
     }
     
     public function nonparticipate(Request $request, Event $event)
@@ -141,7 +141,7 @@ class EventController extends Controller
         $eventinvitation->save();
         $event_id_array = $request['eventinvitations'];
         $event_id = $event_id_array['event_id'];
-        return redirect('/events/' );
+        return redirect('/events/' . $event_id);
     }
 
 }

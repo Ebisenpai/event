@@ -15,6 +15,6 @@ class ChatController extends Controller
         $event_id = $input['event_id'];
         unset($input['event_id']);
         $chat->fill($input)->save();
-        return redirect('/events/'. $event_id.'/'. $input['chat_room_id']);
+        return redirect('/events'. $event_id.'/'. $input['chat_room_id']);
     }
 }
