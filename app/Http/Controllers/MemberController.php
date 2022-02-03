@@ -13,6 +13,6 @@ class MemberController extends Controller
         $input = $request['members'];
         $event_id = $input['event_id'];
         $member->fill($input)->save();
-        return redirect('/events'. $event_id.'/');
+        return redirect('/events/'. $event_id);
     }
 }

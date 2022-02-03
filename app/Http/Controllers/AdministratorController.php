@@ -12,6 +12,7 @@ class AdministratorController extends Controller
     {
         $input = $request['administrators'];
         $administrator->fill($input)->save();//イベントモデルに変数inputの値を入れる
-        return redirect('/events'.$event->id);
+        $event_id = $input['event_id'];
+        return redirect('/events/'.$event_id);
     }
 }
