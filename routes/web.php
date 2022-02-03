@@ -29,6 +29,6 @@ Route::middleware('auth')->group(function(){
     Route::post('/participate', 'EventController@participate');
     Route::post('/nonparticipate', 'EventController@nonparticipate');
 });
-Route::get('/login/line/', 'LineLoginController@index');
+Route::get('/login/line', 'LineLoginController@index');
 Route::get('/login/line/callback','LineLoginController@callback');
 

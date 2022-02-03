@@ -73,14 +73,14 @@
         </div>
         <div class="row">    
             <div class="col-sm-1">
-                <form action="/participate/" method="post">
+                <form action="/participate" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name='eventinvitations[event_id]' value={{$events->id}}>
                     <input type="submit" class="btn btn-primary" value="参加" />    
                 </form>        
             </div>
             <div class="col-sm-1">
-                <form action="/nonparticipate/" method="post">
+                <form action="/nonparticipate" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name='eventinvitations[event_id]' value={{$events->id}}>
                     <input type="submit" class="btn btn-primary" value="不参加" />    
@@ -122,7 +122,7 @@
             <div class="col-sm-4">
                 {{--管理者追加機能--}}
                 @if($events->creatorCheck())
-                <form action="/admin/" method="post">
+                <form action="/admin" method="post">
                     {{ csrf_field() }}
                     <h4>
                         管理者の追加</h4>
@@ -141,7 +141,7 @@
             @if($events->adminCheck())
                 <div class="col-sm-4">
                     {{--名簿登録機能--}}
-                    <form action="/members/" method="post">
+                    <form action="/members" method="post">
                         {{ csrf_field() }}
                         <h4>名簿の登録</h4>
                         <div class="name">
