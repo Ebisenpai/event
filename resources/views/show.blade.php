@@ -76,14 +76,14 @@
                 <form action="/participate" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name='eventinvitations[event_id]' value={{$events->id}}>
-                    <input type="submit" class="btn btn-primary" value="参加" />    
+                    <input type="submit" class="btn btn-primary m-1" value="参加" />    
                 </form>        
             </div>
             <div class="col-sm-1">
                 <form action="/nonparticipate" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name='eventinvitations[event_id]' value={{$events->id}}>
-                    <input type="submit" class="btn btn-primary" value="不参加" />    
+                    <input type="submit" class="btn btn-primary m-1" value="不参加" />    
                 </form>        
             </div>
             <div class="col-sm-2">
@@ -91,7 +91,7 @@
                     <form action="/events/{{ $events->id }}" id="form_{{ $events->id }}" method="post" style="display:inline">
                       @csrf
                       @method('DELETE')
-                      <button type="submit">イベント削除</button>
+                      <button type="submit" class="m-1">イベント削除</button>
                     </form>
                 @endif
             </div>

@@ -12,7 +12,7 @@
     <body>
     <div class="px-3" style="color: black; background-color: white;">
         <div class="row">
-            <form action="/logout" method="post">
+            <form action="/logout" method="post" style="text-align: right">
                 {{ csrf_field() }}
                 <input type="submit" value="logout"/>
             </form>
@@ -24,10 +24,10 @@
         @endif
         <div class="col-sm-6">
                 <h2>イベント一覧</h2>
-                <div class='events'>
+                <div class="block">
                     @foreach (Auth::user()->joined_events()->get() as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
-                        <div class='event'>
-                            <a href='/events/{{$event->id}}'><h2 class='title'>{{ $event->title }}</h2></a>
+                        <div class="border border-2 mb-1 p-1">
+                            <a href='/events/{{$event->id}}' class="text-dark"><h2 class='title'>{{ $event->title }}</h2></a>
                             <p class='outline'>{{ $event->outline}}</p>
                         </div>
                     @endforeach
@@ -37,10 +37,10 @@
 
                 <h2>作成したイベント</h2>
 
-                    <div class='events'>
+                    <div class="block">
                         @foreach (Auth::user()->created_events()->get() as $event)  {{--eventsは複数データが入っていて$eventが単一のデータ--}}
-                            <div class='event'>
-                                <a href='/events/{{$event->id}}'><h2 class='title'>{{ $event->title }}</h2></a>
+                            <div class="border border-2 mb-1 p-1">
+                                <a href='/events/{{$event->id}}' class="text-dark"><h2 class='title'>{{ $event->title }}</h2></a>
                                 <p class='outline'>{{ $event->outline}}</p>
                             </div>
                         @endforeach
@@ -55,7 +55,7 @@
 
                 <div class='events'>
                     @foreach (Auth::user()->invited_events()->get() as $event){{--eventsは複数データが入っていて$eventが単一のデータ--}}
-                        <div class='event'>
+                        <div class="border border-2 mb-1 p-1">
                             <h2 class='title'>{{ $event->title }}</h2>
                             <p class='outline'>{{ $event->outline}}</p>
                             <form action="/events/approve" method="post">
