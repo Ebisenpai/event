@@ -106,6 +106,8 @@
                 @if($events->adminCheck())
                 <form action="/invite" method="post">
                     {{ csrf_field() }}
+                    @dd($events)
+                    @dd($users)
                     <h4>イベント招待</h4>
                     <div class ="selection">
                         <select name="eventinvitations[invited_user]">
