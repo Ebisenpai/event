@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-     public function index(Event $event,User $user)
+     public function index(Event $event, User $user)
     {
         return view('index')->with(['events' => $event->get(),'users' =>$user->get()]);
     }
@@ -60,8 +60,8 @@ class EventController extends Controller
             'unsent_user_id' => $unsent_user_id,
             'sent_user_id' => $sent_user_id,
             'chat_rooms' => $chat_rooms,
-            'events' =>$event,
-            'users' =>$user->get()]);
+            'events' => $event,
+            'users' => $user->get()]);
     }
     
     public function create()
