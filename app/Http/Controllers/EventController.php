@@ -14,18 +14,23 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-     public function index(Event $event, User $user)
+     public function index(Event $event,User $user)
     {
-        return view('index')->with(['events' => $event->get(),'users' =>$user->get()]);
+        return view('index')->with(['events' => $event->get()
+            ,'users' =>$user->get()]);
     }
-    public function show(Event $event,User $user)
-    {
-         $chat_rooms = $event->chat_rooms();
-         $chat_rooms = $chat_rooms->where(function($query){
-                    $query->where('first_user_id', auth()->user()->id)
-                            ->orWhere('member_id', auth()->user()->id);
-                            })->get();
-        //authがチャットしているユーザーの配列
+    
+    public function my_chatroom($event){
+        $chat_rooms = $event->chat_rooms();
+        $chat_rooms = $chat_rooms->where(function($query){
+            $query->where('first_user_id', auth()->user()->id)
+                    ->orWhere('member_id', auth()->user()->id);
+                    })->get();
+        return $chat_rooms;
+    }
+    
+    public function chat_user($chat_rooms){
+        //チャットしている相手の取得
         $array = array();
         foreach($chat_rooms as $chatroom){
             if($chatroom->first_user_id != Auth::id()){
@@ -35,20 +40,36 @@ class EventController extends Controller
             }
         }
         $sent_user_id = $array;
-        
-       
-        //招待ユーザーidの配列を作る
+        return $sent_user_id;
+    }
+    
+    //招待中のユーザーidの配列を作る
+    public function invited_user($event){
         $invited_users=$event->invited_users()->get();
         $array1 = array();
         foreach($invited_users as $invited_user){
             $array1[] = $invited_user->id;
         }
         $invited_user_id = $array1;
-        //dd($invited_user_id);
+        return $invited_user_id;
+    }
+    
+    public function show(Event $event,User $user)
+    {
+        $chat_rooms = $this->my_chatroom($event);
+        
+        $sent_user_id = $this->chat_user($chat_rooms);
+        
+        
+        //招待中のユーザーidの配列を作る
+        $invited_user_id = $this->invited_user($event);
+        
+        
+        //名簿登録済みのユーザーの取得
+        
         
          //招待ユーザーからチャットしているユーザを取り除く
         $unsent_user_id=$invited_user_id;
-                        
         foreach($sent_user_id as $sentuser_id){                
             $key = array_search($sentuser_id, $unsent_user_id);
             if(!is_bool($key)){
@@ -60,9 +81,11 @@ class EventController extends Controller
             'unsent_user_id' => $unsent_user_id,
             'sent_user_id' => $sent_user_id,
             'chat_rooms' => $chat_rooms,
-            'events' => $event,
-            'users' => $user->get()]);
+            'events' =>$event,
+            'users' =>$user->get()]);
     }
+    
+    
     
     public function create()
     {
