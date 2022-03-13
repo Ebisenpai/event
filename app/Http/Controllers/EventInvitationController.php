@@ -24,6 +24,5 @@ class EventInvitationController extends Controller
         else{
             return redirect('/events/' . $event_id);
         }
-        
     }
 }

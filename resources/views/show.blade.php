@@ -168,7 +168,6 @@
                         </h5>
                     </div>
                 @endforeach
-                
             </div>{{--新規メッセージ送信--}}
             <div class="col-sm-6">
                 <form action="/firstchats" method="post">

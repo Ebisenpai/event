@@ -34,7 +34,6 @@
                 </div>
             </div>
             <div class="col-sm-6">
-
                 <h2>作成したイベント</h2>
 
                     <div class="block">
