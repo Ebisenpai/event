@@ -41,9 +41,14 @@ class Event extends Model
     
     public function invited_users()
     {
-        return $this->belongsToMany('App\User','event_invitations','event_id','invited_user');
+        return $this->belongsToMany('App\User',
+            'event_invitations','event_id','invited_user');
     }
     
+    public function registered_users()
+    {
+        return $this->hasMany('App\Member','event_id');
+    }
     
     public function chat_rooms()
     {
@@ -53,7 +58,7 @@ class Event extends Model
     public function participate_users()
     {
         $participate_users = $this->invited_users()
-        ->where('paticipation_status', 1);
+            ->where('paticipation_status', 1);
         return $participate_users;
     }
     
